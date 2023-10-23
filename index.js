@@ -12,7 +12,7 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
   next();
 });
-app.use('/', zapisiRouter)
+app.use('/api', zapisiRouter)
 
 app.listen(PORT, () => {
   console.log(`Server work on port: ${PORT}`);
