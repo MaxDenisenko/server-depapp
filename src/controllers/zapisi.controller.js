@@ -15,6 +15,9 @@ class ZapisiControllers {
         const deleteZapis = await db.query (`DELETE FROM zapisi where id = $1`,[id])
         res.json(deleteZapis.rows[0])
     }
+    async test (req,res) {
+        res.json('test')
+    }
 }
 
 module.exports = new ZapisiControllers()
