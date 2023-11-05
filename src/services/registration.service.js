@@ -34,6 +34,13 @@ class RegistrationService {
 
         return {user: userDto, ...tokens, link}
     }
+    async activate(activatedLink) {
+        const user = await usersModels.findOne({where: {activatedLink}})
+        if (!user) {
+            throw ApiError.BadRequest('Не корректная ссылка')
+        }
+        user.update({isActivated: true})
+    }
 }
 
 module.exports = new RegistrationService()
