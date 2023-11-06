@@ -2,8 +2,10 @@ require('dotenv').config()
 const express = require('express');
 const RegistrationRoutes = require('./src/routes/registration.routes')
 const LoginRoutes = require('./src/routes/login.routes')
+const LogoutRoutes = require('./src/routes/logout.routes')
 const zapisiRouter = require('./src/routes/zapisi.routes')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 const errorMiddleware = require('./src/middleware/error.midleware')
 
 const app = express();
@@ -11,6 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
+app.use(cookieParser())
 app.use(cors())
 // app.use(function (req, res, next) {
 //   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,7 +21,7 @@ app.use(cors())
 //   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
 //   next();
 // });
-app.use('/api',RegistrationRoutes, LoginRoutes, zapisiRouter)
+app.use('/api',RegistrationRoutes, LoginRoutes, LogoutRoutes, zapisiRouter)
 app.use(errorMiddleware)
 
 app.listen(PORT, () => {
