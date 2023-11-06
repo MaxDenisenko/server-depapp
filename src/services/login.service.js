@@ -2,7 +2,7 @@ const ApiError = require('../exceptions/apiError')
 const usersModel = require('../models/users.models')
 const bcrypt = require('bcrypt')
 const UserDto = require('../dto/user.dto')
-const TokenService = require('../services/tokens.service')
+const tokenService = require('../services/tokens.service')
 
 class LoginService {
     async login(email, password){
@@ -17,8 +17,8 @@ class LoginService {
         }
         const userDto = new UserDto(findUser)
         const tokens = TokenService.generateToken({...userDto})
-        await TokenService.saveToken(findUser.id, tokens.refreshToken)
-
+        
+        await tokenService.saveToken(findUser.id, tokens.refreshToken)
         return {user: userDto, ...tokens}
     }
 }
