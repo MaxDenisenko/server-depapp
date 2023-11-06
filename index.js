@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const RegistrationRoutes = require('./src/routes/registration.routes')
+const LoginRoutes = require('./src/routes/login.routes')
 const zapisiRouter = require('./src/routes/zapisi.routes')
 const cors = require('cors')
 const errorMiddleware = require('./src/middleware/error.midleware')
@@ -17,7 +18,7 @@ app.use(cors())
 //   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
 //   next();
 // });
-app.use('/api',RegistrationRoutes, zapisiRouter)
+app.use('/api',RegistrationRoutes, LoginRoutes, zapisiRouter)
 app.use(errorMiddleware)
 
 app.listen(PORT, () => {

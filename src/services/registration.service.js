@@ -5,7 +5,6 @@ const mailService = require('./mail.service')
 const ApiError = require('../exceptions/apiError')
 const UserDto = require('../dto/user.dto')
 const TokenService = require('../services/tokens.service')
-const tokensService = require('../services/tokens.service')
 
 class RegistrationService {
     async registration (name, lastname, email, password) {
@@ -30,7 +29,7 @@ class RegistrationService {
 
         const userDto = new UserDto(createUser)
         const tokens = TokenService.generateToken({...userDto})
-        await tokensService.saveToken(createUser.id, tokens.refreshToken)
+        await TokenService.saveToken(createUser.id, tokens.refreshToken)
 
         return {user: userDto, ...tokens, link}
     }
