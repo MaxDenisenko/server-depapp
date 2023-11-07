@@ -16,7 +16,7 @@ class LoginService {
             throw ApiError.BadRequest('Не верный пароль')
         }
         const userDto = new UserDto(findUser)
-        const tokens = TokenService.generateToken({...userDto})
+        const tokens = tokenService.generateToken({...userDto})
         
         await tokenService.saveToken(findUser.id, tokens.refreshToken)
         return {user: userDto, ...tokens}

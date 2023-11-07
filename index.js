@@ -3,6 +3,7 @@ const express = require('express');
 const RegistrationRoutes = require('./src/routes/registration.routes')
 const LoginRoutes = require('./src/routes/login.routes')
 const LogoutRoutes = require('./src/routes/logout.routes')
+const UsersRoutes = require('./src/routes/users.routes')
 const zapisiRouter = require('./src/routes/zapisi.routes')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
@@ -21,7 +22,7 @@ app.use(cors())
 //   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
 //   next();
 // });
-app.use('/api',RegistrationRoutes, LoginRoutes, LogoutRoutes, zapisiRouter)
+app.use('/api',RegistrationRoutes, LoginRoutes, LogoutRoutes, UsersRoutes, zapisiRouter)
 app.use(errorMiddleware)
 
 app.listen(PORT, () => {
