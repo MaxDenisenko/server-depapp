@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser())
 app.use(cors({
   credentials: true,
-  origin: 'https://localhost:3000' || 'https://depapp.ru'
+  origin: '*'
 }))
 // app.use(function (req, res, next) {
 //   res.setHeader('Access-Control-Allow-Origin', '*');
