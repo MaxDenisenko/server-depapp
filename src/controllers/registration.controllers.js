@@ -22,7 +22,7 @@ class RegistrationControllers {
         try {
             const activatedLink = req.params.link
             await RegistrationService.activate(activatedLink)
-            return res.json('Аккаунт активирован')
+            return res.redirect(process.env.API_URL)
         } catch (error) {
             next(error)
         }
