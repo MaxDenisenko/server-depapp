@@ -47,7 +47,7 @@ class TokenService {
     }
 
     async findToken(token) {
-        const tokenData = await tokenModel.findOne({where: {token}})
+        const tokenData = await tokenModel.findOne({where: {refreshToken: token}})
         return tokenData
     }
 
@@ -61,11 +61,11 @@ class TokenService {
             throw ApiError.UnauthorizedError()
         }
 
-        const findUser = await usersModel.findOne({where: {id: userData.userId}})
+        const findUser = await usersModel.findOne({where: {email: userData.email}})
         const userDto = new UserDto(findUser)
-        const tokens = TokenService.generateToken({...userDto})
+        const tokens = this.generateToken({...userDto})
         
-        await saveToken(findUser.id, tokens.refreshToken)
+        await this.saveToken(findUser.id, tokens.refreshToken)
         return {user: userDto, ...tokens}
     }
 }
