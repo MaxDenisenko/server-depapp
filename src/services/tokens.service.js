@@ -7,8 +7,8 @@ const UserDto = require('../dto/user.dto')
 
 class TokenService {
      generateToken(payload) {
-        const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_TOKEN,{expiresIn: '30m'})
-        const refreshToken = jwt.sign(payload, process.env.JWT_REFRESS_TOKEN,{expiresIn: '30d'})
+        const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_TOKEN,{expiresIn: '15s'})
+        const refreshToken = jwt.sign(payload, process.env.JWT_REFRESS_TOKEN,{expiresIn: '30s'})
         return { accessToken, refreshToken }
     }
 
