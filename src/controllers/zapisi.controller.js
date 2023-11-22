@@ -1,14 +1,14 @@
-const db = require('../services/db.Config')
+const zapisiService = require('../services/zapisi.service')
 
 class ZapisiControllers {
     async getZapisi (req, res) {
-        const zapisi = await db.query('SELECT * FROM zapisi')
-        res.json(zapisi.rows)
+        const zapisi = await zapisiService.getZapis()
+        return res.json(zapisi)
     }
     async createZapis (req, res) {
-        const { id, date, zone, sum, client, clientphone, comment } = req.body
-        const newZapis = await db.query (`INSERT INTO zapisi (date, zone, sum, client, clientphone,comment) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`, [date, zone, sum, client, clientphone, comment])
-        res.json(newZapis.rows[0])
+        const { date, area, sum, fioClient, phoneClient, comment } = req.body
+        const zapisData = await zapisiService.createZapis(date, area, sum, fioClient, phoneClient, comment)
+        return res.json(zapisData)
     }
     async deleteZapis (req, res) {
         const {id} = req.params.id
