@@ -9,7 +9,7 @@
 
 # Icon must end with two \r
 Icon
-.env
+
 
 # Thumbnails
 ._*
@@ -50,6 +50,7 @@ psd
 thumb
 sketch
 
-.env
+
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,react
+.env
