@@ -7,7 +7,8 @@ class ZapisiControllers {
     }
     async createUpdateZapis (req, res) {
         const { id, date, area, sum, fioClient, phoneClient, comment } = req.body
-        if (id) {
+        console.log(id)
+        if (id != null) {
             const zapisData = await zapisiService.updateZapis(id, date, area, sum, fioClient, phoneClient, comment)
             return res.json(zapisData)
         }
